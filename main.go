@@ -38,6 +38,10 @@ func addNum(sliceNums []int) []int {
 		fmt.Println("Valor inválido. Digite um número inteiro.")
 		return sliceNums
 	}
+	if num < 0 {
+		fmt.Println("Não é permitido adicionar números negativos.")
+		return sliceNums
+	}
 
 	sliceNums = append(sliceNums, num)
 	fmt.Printf("Número %d adicionado com sucesso!\n", num)
