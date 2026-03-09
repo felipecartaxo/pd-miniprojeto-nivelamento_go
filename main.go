@@ -13,6 +13,7 @@ var reader = bufio.NewReader(os.Stdin)
 func showMenu() {
 	fmt.Println("\n=== Gerenciador de Números ===")
 	fmt.Println("1) Adicionar número")
+	fmt.Println("2) Listar números")
 	fmt.Println("0) Sair")
 	fmt.Print("Escolha uma opção: ")
 }
@@ -40,6 +41,18 @@ func addNum(sliceNums []int) []int {
 	return sliceNums
 }
 
+func listNums(sliceNums []int) {
+	if len(sliceNums) == 0 {
+		fmt.Println("A lista está vazia.")
+		return
+	}
+
+	fmt.Println("Números armazenados:")
+	for i, num := range sliceNums {
+		fmt.Printf("Índice %d: %d\n", i, num)
+	}
+}
+
 // -----
 func main() {
 	sliceNums := []int{}
@@ -57,6 +70,8 @@ func main() {
 		switch optionStr {
 		case "1":
 			sliceNums = addNum(sliceNums)
+		case "2":
+			listNums(sliceNums)
 		case "0":
 			fmt.Println("Encerrando aplicação...")
 			return
