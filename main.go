@@ -18,6 +18,7 @@ func showMenu() {
 	fmt.Println("4) Estatísticas")
 	fmt.Println("5) Divisão segura")
 	fmt.Println("6) Limpar lista")
+	fmt.Println("7) Exibir números pares")
 	fmt.Println("0) Sair")
 	fmt.Print("Escolha uma opção: ")
 }
@@ -180,6 +181,26 @@ func clearList(sliceNums []int) []int {
 	return sliceNums
 }
 
+func showEvenNums(sliceNums []int) {
+	if len(sliceNums) == 0 {
+		fmt.Println("A lista está vazia.")
+		return
+	}
+
+	foundEven := false
+	fmt.Println("Números pares armazenados:")
+	for i, num := range sliceNums {
+		if num%2 == 0 {
+			fmt.Printf("Índice %d: %d\n", i, num)
+			foundEven = true
+		}
+	}
+
+	if !foundEven {
+		fmt.Println("Nenhum número par encontrado na lista.")
+	}
+}
+
 /// ---
 func main() {
 	sliceNums := []int{}
@@ -207,6 +228,8 @@ func main() {
 				safeDivision()
 			case "6":
 				sliceNums = clearList(sliceNums)
+			case "7":
+				showEvenNums(sliceNums)
 			case "0":
 				fmt.Println("Encerrando aplicação...")
 				return
