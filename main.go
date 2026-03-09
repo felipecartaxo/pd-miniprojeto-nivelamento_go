@@ -15,6 +15,7 @@ func showMenu() {
 	fmt.Println("1) Adicionar número")
 	fmt.Println("2) Listar números")
 	fmt.Println("3) Remover por índice")
+	fmt.Println("4) Estatísticas")
 	fmt.Println("0) Sair")
 	fmt.Print("Escolha uma opção: ")
 }
@@ -32,7 +33,7 @@ func addNum(sliceNums []int) []int {
 
 	num, err := strconv.Atoi(input)
 	if err != nil {
-		fmt.Println("Valor inválida. Digite um número inteiro.")
+		fmt.Println("Valor inválido. Digite um número inteiro.")
 		return sliceNums
 	}
 
@@ -80,14 +81,49 @@ func removeByIndex(sliceNums []int) []int {
 	}
 
 	removedValue := sliceNums[index]
-
 	sliceNums = append(sliceNums[:index], sliceNums[index+1:]...)
 
 	fmt.Printf("Número %d removido com sucesso do índice %d!\n", removedValue, index)
 	return sliceNums
 }
 
-// -----
+func calcStats(nums []int) (int, int, float64, error) {
+	if len(nums) == 0 {
+		return 0, 0, 0, fmt.Errorf("não é possível calcular estatísticas de uma lista vazia")
+	}
+
+	min := nums[0]
+	max := nums[0]
+	sum := 0
+
+	for _, n := range nums {
+		if n < min {
+			min = n
+		}
+		if n > max {
+			max = n
+		}
+		sum += n
+	}
+
+	media := float64(sum) / float64(len(nums))
+	
+	return min, max, media, nil
+}
+
+func showStats(nums []int) {
+	min, max, media, err := calcStats(nums)
+	if err != nil {
+		fmt.Println("Erro:", err)
+		return
+	}
+
+	fmt.Println("=== Estatísticas ===")
+	fmt.Printf("Mínimo: %d\n", min)
+	fmt.Printf("Máximo: %d\n", max)
+	fmt.Printf("Média: %.2f\n", media)
+}
+
 func main() {
 	sliceNums := []int{}
 
@@ -108,6 +144,8 @@ func main() {
 			listNums(sliceNums)
 		case "3":
 			sliceNums = removeByIndex(sliceNums)
+		case "4":
+			showStats(sliceNums)
 		case "0":
 			fmt.Println("Encerrando aplicação...")
 			return
