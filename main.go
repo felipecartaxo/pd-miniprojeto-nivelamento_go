@@ -27,7 +27,7 @@ func addNum(sliceNums []int) []int {
 
 	input, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println("Erro ao ler input:", err)
+		fmt.Println("Erro ao ler valor:", err)
 		return sliceNums
 	}
 
@@ -66,7 +66,7 @@ func removeByIndex(sliceNums []int) []int {
 	fmt.Print("Digite o índice que deseja remover: ")
 	input, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println("Erro ao ler input:", err)
+		fmt.Println("Erro ao ler valor:", err)
 		return sliceNums
 	}
 
@@ -130,7 +130,7 @@ func safeDivision() {
 	fmt.Print("Digite o dividendo (número 1): ")
 	inputA, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println("Erro ao ler input:", err)
+		fmt.Println("Erro ao ler valor:", err)
 		return
 	}
 	inputA = strings.TrimSpace(inputA)
@@ -144,7 +144,7 @@ func safeDivision() {
 	fmt.Print("Digite o divisor (número 2): ")
 	inputB, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println("Erro ao ler input:", err)
+		fmt.Println("Erro ao ler valor:", err)
 		return
 	}
 	inputB = strings.TrimSpace(inputB)
