@@ -17,6 +17,7 @@ func showMenu() {
 	fmt.Println("3) Remover por índice")
 	fmt.Println("4) Estatísticas")
 	fmt.Println("5) Divisão segura")
+	fmt.Println("6) Limpar lista")
 	fmt.Println("0) Sair")
 	fmt.Print("Escolha uma opção: ")
 }
@@ -164,6 +165,18 @@ func safeDivision() {
 	fmt.Printf("Resultado: %.2f\n", resultado)
 }
 
+func clearList(sliceNums []int) []int {
+	if len(sliceNums) == 0 {
+		fmt.Println("A lista já está vazia.")
+		return sliceNums
+	}
+
+	sliceNums = []int{}
+	fmt.Println("Lista limpa com sucesso!")
+	return sliceNums
+}
+
+/// ---
 func main() {
 	sliceNums := []int{}
 
@@ -178,21 +191,23 @@ func main() {
 		optionStr = strings.TrimSpace(optionStr)
 
 		switch optionStr {
-		case "1":
-			sliceNums = addNum(sliceNums)
-		case "2":
-			listNums(sliceNums)
-		case "3":
-			sliceNums = removeByIndex(sliceNums)
-		case "4":
-			showStats(sliceNums)
-		case "5":
-			safeDivision()
-		case "0":
-			fmt.Println("Encerrando aplicação...")
-			return
-		default:
-			fmt.Println("Opção inválida. Tente novamente.")
+			case "1":
+				sliceNums = addNum(sliceNums)
+			case "2":
+				listNums(sliceNums)
+			case "3":
+				sliceNums = removeByIndex(sliceNums)
+			case "4":
+				showStats(sliceNums)
+			case "5":
+				safeDivision()
+			case "6":
+				sliceNums = clearList(sliceNums)
+			case "0":
+				fmt.Println("Encerrando aplicação...")
+				return
+			default:
+				fmt.Println("Opção inválida. Tente novamente.")
 		}
 	}
 }
