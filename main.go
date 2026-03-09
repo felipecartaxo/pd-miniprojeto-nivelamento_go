@@ -16,6 +16,7 @@ func showMenu() {
 	fmt.Println("2) Listar números")
 	fmt.Println("3) Remover por índice")
 	fmt.Println("4) Estatísticas")
+	fmt.Println("5) Divisão segura")
 	fmt.Println("0) Sair")
 	fmt.Print("Escolha uma opção: ")
 }
@@ -107,7 +108,7 @@ func calcStats(nums []int) (int, int, float64, error) {
 	}
 
 	media := float64(sum) / float64(len(nums))
-	
+
 	return min, max, media, nil
 }
 
@@ -122,6 +123,45 @@ func showStats(nums []int) {
 	fmt.Printf("Mínimo: %d\n", min)
 	fmt.Printf("Máximo: %d\n", max)
 	fmt.Printf("Média: %.2f\n", media)
+}
+
+func safeDivision() {
+	fmt.Print("Digite o dividendo (número 1): ")
+	inputA, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Erro ao ler input:", err)
+		return
+	}
+	inputA = strings.TrimSpace(inputA)
+
+	a, err := strconv.Atoi(inputA)
+	if err != nil {
+		fmt.Println("Valor inválido para o dividendo. Digite um número inteiro.")
+		return
+	}
+
+	fmt.Print("Digite o divisor (número 2): ")
+	inputB, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println("Erro ao ler input:", err)
+		return
+	}
+	inputB = strings.TrimSpace(inputB)
+
+	b, err := strconv.Atoi(inputB)
+	if err != nil {
+		fmt.Println("Valor inválido para o divisor. Digite um número inteiro.")
+		return
+	}
+
+	if b == 0 {
+		fmt.Println("Erro: divisão por zero não é permitida.")
+		return
+	}
+
+	resultado := float64(a) / float64(b)
+
+	fmt.Printf("Resultado: %.2f\n", resultado)
 }
 
 func main() {
@@ -146,6 +186,8 @@ func main() {
 			sliceNums = removeByIndex(sliceNums)
 		case "4":
 			showStats(sliceNums)
+		case "5":
+			safeDivision()
 		case "0":
 			fmt.Println("Encerrando aplicação...")
 			return
